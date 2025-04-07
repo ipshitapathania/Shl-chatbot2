@@ -115,6 +115,7 @@ def main():
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
 
+    # --- Load data and build index on app start ---
     if not st.session_state["index_built"]:
         try:
             with st.spinner("Loading data and building index..."):
@@ -128,6 +129,15 @@ def main():
         except Exception as e:
             st.error(f"Error initializing application: {e}")
 
+    # --- Hero Section ---
+    st.markdown("""
+    <div style='text-align: center; margin-bottom: 2.5rem;'>
+        <h1 style='margin-bottom: 0.5rem;'>SHL Assessment Chatbot</h1>
+        <p style='color: #94a3b8; font-size: 1.1rem; margin-top: 0;'>
+            Get information and recommendations on SHL assessments.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # --- Chat Interface ---
     chat_engine = st.session_state.get('chat_engine')
@@ -143,11 +153,13 @@ def main():
 
             with st.chat_message("assistant"):
                 try:
-                    response = chat_engine.chat(prompt)
-                    st.write(response.response)
-                    st.session_state.messages.append({"role": "assistant", "content": response.response})
+                   # Add formatting instructions to the prompt
+                   formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
+                   response = chat_engine.chat(formatted_prompt)
+                   st.write(response.response)
+                   st.session_state.messages.append({"role": "assistant", "content": response.response})
                 except Exception as e:
-                    st.error(f"An error occurred during chat: {e}")
+                   st.error(f"An error occurred during chat: {e}")
 
     else:
         st.info("Chat is ready! Ask me anything about SHL assessments.")
