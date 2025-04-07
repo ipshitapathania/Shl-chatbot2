@@ -1,0 +1,101 @@
+Assessment Name,URL,Remote Testing Support,Adaptive/IRT Support,Duration (min),Test Type
+Cognitive Ability Test,https://www.shl.com/solutions/products/cognitive-ability-test/,Yes,Yes,20,Cognitive
+Personality Profiler,https://www.shl.com/solutions/products/personality-profiler/,No,No,25,Personality
+Java Developer Test,https://www.shl.com/solutions/products/java-developer-test/,Yes,No,30,Technical
+Team Collaboration Assessment,https://www.shl.com/solutions/products/team-collaboration-assessment/,No,Yes,35,Behavioral
+SQL Proficiency Test,https://www.shl.com/solutions/products/sql-proficiency-test/,Yes,No,40,Aptitude
+Leadership Style Inventory,https://www.shl.com/solutions/products/leadership-style-inventory/,No,No,45,Situational
+Customer Service Aptitude,https://www.shl.com/solutions/products/customer-service-aptitude/,Yes,Yes,20,Reasoning
+Verbal Reasoning Test,https://www.shl.com/solutions/products/verbal-reasoning-test/,No,No,25,Communication
+Numerical Reasoning Test,https://www.shl.com/solutions/products/numerical-reasoning-test/,Yes,No,30,Cognitive
+Critical Thinking Assessment,https://www.shl.com/solutions/products/critical-thinking-assessment/,No,Yes,35,Personality
+Python Coding Test,https://www.shl.com/solutions/products/python-coding-test/,Yes,No,40,Technical
+Emotional Intelligence Survey,https://www.shl.com/solutions/products/emotional-intelligence-survey/,No,No,45,Behavioral
+Situational Judgment Test,https://www.shl.com/solutions/products/situational-judgment-test/,Yes,Yes,20,Aptitude
+Time Management Evaluation,https://www.shl.com/solutions/products/time-management-evaluation/,No,No,25,Situational
+Data Analysis Assessment,https://www.shl.com/solutions/products/data-analysis-assessment/,Yes,No,30,Reasoning
+Software Engineering Exam,https://www.shl.com/solutions/products/software-engineering-exam/,No,Yes,35,Communication
+Finance & Accounting Aptitude,https://www.shl.com/solutions/products/finance-and-accounting-aptitude/,Yes,No,40,Cognitive
+Logical Reasoning Test,https://www.shl.com/solutions/products/logical-reasoning-test/,No,No,45,Personality
+Communication Skills Test,https://www.shl.com/solutions/products/communication-skills-test/,Yes,Yes,20,Technical
+Machine Learning Quiz,https://www.shl.com/solutions/products/machine-learning-quiz/,No,No,25,Behavioral
+Cognitive Ability Test,https://www.shl.com/solutions/products/cognitive-ability-test/,Yes,No,30,Aptitude
+Personality Profiler,https://www.shl.com/solutions/products/personality-profiler/,No,Yes,35,Situational
+Java Developer Test,https://www.shl.com/solutions/products/java-developer-test/,Yes,No,40,Reasoning
+Team Collaboration Assessment,https://www.shl.com/solutions/products/team-collaboration-assessment/,No,No,45,Communication
+SQL Proficiency Test,https://www.shl.com/solutions/products/sql-proficiency-test/,Yes,Yes,20,Cognitive
+Leadership Style Inventory,https://www.shl.com/solutions/products/leadership-style-inventory/,No,No,25,Personality
+Customer Service Aptitude,https://www.shl.com/solutions/products/customer-service-aptitude/,Yes,No,30,Technical
+Verbal Reasoning Test,https://www.shl.com/solutions/products/verbal-reasoning-test/,No,Yes,35,Behavioral
+Numerical Reasoning Test,https://www.shl.com/solutions/products/numerical-reasoning-test/,Yes,No,40,Aptitude
+Critical Thinking Assessment,https://www.shl.com/solutions/products/critical-thinking-assessment/,No,No,45,Situational
+Python Coding Test,https://www.shl.com/solutions/products/python-coding-test/,Yes,Yes,20,Reasoning
+Emotional Intelligence Survey,https://www.shl.com/solutions/products/emotional-intelligence-survey/,No,No,25,Communication
+Situational Judgment Test,https://www.shl.com/solutions/products/situational-judgment-test/,Yes,No,30,Cognitive
+Time Management Evaluation,https://www.shl.com/solutions/products/time-management-evaluation/,No,Yes,35,Personality
+Data Analysis Assessment,https://www.shl.com/solutions/products/data-analysis-assessment/,Yes,No,40,Technical
+Software Engineering Exam,https://www.shl.com/solutions/products/software-engineering-exam/,No,No,45,Behavioral
+Finance & Accounting Aptitude,https://www.shl.com/solutions/products/finance-and-accounting-aptitude/,Yes,Yes,20,Aptitude
+Logical Reasoning Test,https://www.shl.com/solutions/products/logical-reasoning-test/,No,No,25,Situational
+Communication Skills Test,https://www.shl.com/solutions/products/communication-skills-test/,Yes,No,30,Reasoning
+Machine Learning Quiz,https://www.shl.com/solutions/products/machine-learning-quiz/,No,Yes,35,Communication
+Cognitive Ability Test,https://www.shl.com/solutions/products/cognitive-ability-test/,Yes,No,40,Cognitive
+Personality Profiler,https://www.shl.com/solutions/products/personality-profiler/,No,No,45,Personality
+Java Developer Test,https://www.shl.com/solutions/products/java-developer-test/,Yes,Yes,20,Technical
+Team Collaboration Assessment,https://www.shl.com/solutions/products/team-collaboration-assessment/,No,No,25,Behavioral
+SQL Proficiency Test,https://www.shl.com/solutions/products/sql-proficiency-test/,Yes,No,30,Aptitude
+Leadership Style Inventory,https://www.shl.com/solutions/products/leadership-style-inventory/,No,Yes,35,Situational
+Customer Service Aptitude,https://www.shl.com/solutions/products/customer-service-aptitude/,Yes,No,40,Reasoning
+Verbal Reasoning Test,https://www.shl.com/solutions/products/verbal-reasoning-test/,No,No,45,Communication
+Numerical Reasoning Test,https://www.shl.com/solutions/products/numerical-reasoning-test/,Yes,Yes,20,Cognitive
+Critical Thinking Assessment,https://www.shl.com/solutions/products/critical-thinking-assessment/,No,No,25,Personality
+Python Coding Test,https://www.shl.com/solutions/products/python-coding-test/,Yes,No,30,Technical
+Emotional Intelligence Survey,https://www.shl.com/solutions/products/emotional-intelligence-survey/,No,Yes,35,Behavioral
+Situational Judgment Test,https://www.shl.com/solutions/products/situational-judgment-test/,Yes,No,40,Aptitude
+Time Management Evaluation,https://www.shl.com/solutions/products/time-management-evaluation/,No,No,45,Situational
+Data Analysis Assessment,https://www.shl.com/solutions/products/data-analysis-assessment/,Yes,Yes,20,Reasoning
+Software Engineering Exam,https://www.shl.com/solutions/products/software-engineering-exam/,No,No,25,Communication
+Finance & Accounting Aptitude,https://www.shl.com/solutions/products/finance-and-accounting-aptitude/,Yes,No,30,Cognitive
+Logical Reasoning Test,https://www.shl.com/solutions/products/logical-reasoning-test/,No,Yes,35,Personality
+Communication Skills Test,https://www.shl.com/solutions/products/communication-skills-test/,Yes,No,40,Technical
+Machine Learning Quiz,https://www.shl.com/solutions/products/machine-learning-quiz/,No,No,45,Behavioral
+Cognitive Ability Test,https://www.shl.com/solutions/products/cognitive-ability-test/,Yes,Yes,20,Aptitude
+Personality Profiler,https://www.shl.com/solutions/products/personality-profiler/,No,No,25,Situational
+Java Developer Test,https://www.shl.com/solutions/products/java-developer-test/,Yes,No,30,Reasoning
+Team Collaboration Assessment,https://www.shl.com/solutions/products/team-collaboration-assessment/,No,Yes,35,Communication
+SQL Proficiency Test,https://www.shl.com/solutions/products/sql-proficiency-test/,Yes,No,40,Cognitive
+Leadership Style Inventory,https://www.shl.com/solutions/products/leadership-style-inventory/,No,No,45,Personality
+Customer Service Aptitude,https://www.shl.com/solutions/products/customer-service-aptitude/,Yes,Yes,20,Technical
+Verbal Reasoning Test,https://www.shl.com/solutions/products/verbal-reasoning-test/,No,No,25,Behavioral
+Numerical Reasoning Test,https://www.shl.com/solutions/products/numerical-reasoning-test/,Yes,No,30,Aptitude
+Critical Thinking Assessment,https://www.shl.com/solutions/products/critical-thinking-assessment/,No,Yes,35,Situational
+Python Coding Test,https://www.shl.com/solutions/products/python-coding-test/,Yes,No,40,Reasoning
+Emotional Intelligence Survey,https://www.shl.com/solutions/products/emotional-intelligence-survey/,No,No,45,Communication
+Situational Judgment Test,https://www.shl.com/solutions/products/situational-judgment-test/,Yes,Yes,20,Cognitive
+Time Management Evaluation,https://www.shl.com/solutions/products/time-management-evaluation/,No,No,25,Personality
+Data Analysis Assessment,https://www.shl.com/solutions/products/data-analysis-assessment/,Yes,No,30,Technical
+Software Engineering Exam,https://www.shl.com/solutions/products/software-engineering-exam/,No,Yes,35,Behavioral
+Finance & Accounting Aptitude,https://www.shl.com/solutions/products/finance-and-accounting-aptitude/,Yes,No,40,Aptitude
+Logical Reasoning Test,https://www.shl.com/solutions/products/logical-reasoning-test/,No,No,45,Situational
+Communication Skills Test,https://www.shl.com/solutions/products/communication-skills-test/,Yes,Yes,20,Reasoning
+Machine Learning Quiz,https://www.shl.com/solutions/products/machine-learning-quiz/,No,No,25,Communication
+Cognitive Ability Test,https://www.shl.com/solutions/products/cognitive-ability-test/,Yes,No,30,Cognitive
+Personality Profiler,https://www.shl.com/solutions/products/personality-profiler/,No,Yes,35,Personality
+Java Developer Test,https://www.shl.com/solutions/products/java-developer-test/,Yes,No,40,Technical
+Team Collaboration Assessment,https://www.shl.com/solutions/products/team-collaboration-assessment/,No,No,45,Behavioral
+SQL Proficiency Test,https://www.shl.com/solutions/products/sql-proficiency-test/,Yes,Yes,20,Aptitude
+Leadership Style Inventory,https://www.shl.com/solutions/products/leadership-style-inventory/,No,No,25,Situational
+Customer Service Aptitude,https://www.shl.com/solutions/products/customer-service-aptitude/,Yes,No,30,Reasoning
+Verbal Reasoning Test,https://www.shl.com/solutions/products/verbal-reasoning-test/,No,Yes,35,Communication
+Numerical Reasoning Test,https://www.shl.com/solutions/products/numerical-reasoning-test/,Yes,No,40,Cognitive
+Critical Thinking Assessment,https://www.shl.com/solutions/products/critical-thinking-assessment/,No,No,45,Personality
+Python Coding Test,https://www.shl.com/solutions/products/python-coding-test/,Yes,Yes,20,Technical
+Emotional Intelligence Survey,https://www.shl.com/solutions/products/emotional-intelligence-survey/,No,No,25,Behavioral
+Situational Judgment Test,https://www.shl.com/solutions/products/situational-judgment-test/,Yes,No,30,Aptitude
+Time Management Evaluation,https://www.shl.com/solutions/products/time-management-evaluation/,No,Yes,35,Situational
+Data Analysis Assessment,https://www.shl.com/solutions/products/data-analysis-assessment/,Yes,No,40,Reasoning
+Software Engineering Exam,https://www.shl.com/solutions/products/software-engineering-exam/,No,No,45,Communication
+Finance & Accounting Aptitude,https://www.shl.com/solutions/products/finance-and-accounting-aptitude/,Yes,Yes,20,Cognitive
+Logical Reasoning Test,https://www.shl.com/solutions/products/logical-reasoning-test/,No,No,25,Personality
+Communication Skills Test,https://www.shl.com/solutions/products/communication-skills-test/,Yes,No,30,Technical
+Machine Learning Quiz,https://www.shl.com/solutions/products/machine-learning-quiz/,No,Yes,35,Behavioral
