@@ -13,14 +13,14 @@ from llama_index.llms.groq import Groq
 import pandas as pd
 from llama_index.core import Document
 
-# --- Configuration ---
+
 PERSIST_DIR = "./storage"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-LLM_MODEL = "llama3-8b-8192"  # Or the specific Groq model you want to use
+LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# --- Utility Functions ---
+
 def load_groq_llm():
     load_dotenv()
     api_key = os.getenv("GROQ_API_KEY")
@@ -87,17 +87,15 @@ def reset_index():
 def main():
     st.set_page_config(
         page_title="SHL Assessment Chatbot",
-        page_icon="💼",
         layout="wide",
         initial_sidebar_state="collapsed"
     )
 
-    # --- Custom Dark Theme ---
     st.markdown("""
     <style>
     :root {
         --primary: #6eb5ff;
-        --background: #0e1117;
+        --background: #000000;
         --card: #1a1d24;
         --text: #f0f0f0;
     }
@@ -110,13 +108,13 @@ def main():
     os.environ["TORCH_DISABLE_STREAMLIT_WATCHER"] = "1"
     os.environ["LLAMA_INDEX_DISABLE_OPENAI"] = "1"
 
-    # --- Initialize Session State ---
+  
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Hello! I'm your SHL assessment assistant. How can I help you?"}]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
 
-    # --- Load data and build index on app start ---
+    
     if not st.session_state["index_built"]:
         try:
             with st.spinner("Loading data and building index..."):
@@ -133,8 +131,8 @@ def main():
     # --- Hero Section ---
     st.markdown("""
     <div style='text-align: center; margin-bottom: 2.5rem;'>
-        <h1 style='margin-bottom: 0.5rem;'>💼 SHL Assessment Chatbot</h1>
-        <p style='color: #94a3b8; font-size: 1.1rem; margin-top: 0;'>
+        <h1 style='margin-bottom: 0.5rem;'> SHL Assessment Chatbot</h1>
+        <p style='color: #8095a6; font-size: 1rem; margin-top: 0;'>
             Get information and recommendations on SHL assessments.
         </p>
     </div>
@@ -163,21 +161,6 @@ def main():
     else:
         st.info("Chat is ready! Ask me anything about SHL assessments.")
 
-    # --- Reset Button (Optional) ---
-    if st.button("🗑️ Reset Chat and Rebuild Index"):
-        try:
-            with st.spinner("Resetting..."):
-                reset_index()
-                # Rebuild index immediately after reset
-                assessment_data = load_data_from_csv(CSV_FILE_PATH)
-                if assessment_data:
-                    build_index(assessment_data)
-                    st.session_state['chat_engine'] = load_chat_engine()
-                    st.success("Chat history and index have been reset and rebuilt.")
-                else:
-                    st.error("Failed to load assessment data. Please check the CSV file.")
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
