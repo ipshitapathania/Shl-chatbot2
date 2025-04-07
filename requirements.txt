@@ -7,3 +7,4 @@ pandas==2.2.3
 python-dotenv==1.1.0
 sentence-transformers==4.0.2  
 groq==0.22.0
+Flask
