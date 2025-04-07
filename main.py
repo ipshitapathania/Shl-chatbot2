@@ -91,6 +91,7 @@ def main():
         initial_sidebar_state="collapsed"
     )
 
+   
     st.markdown("""
     <style>
     :root {
@@ -108,13 +109,12 @@ def main():
     os.environ["TORCH_DISABLE_STREAMLIT_WATCHER"] = "1"
     os.environ["LLAMA_INDEX_DISABLE_OPENAI"] = "1"
 
-  
+   
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "Hello! I'm your SHL assessment assistant. How can I help you?"}]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
 
-    
     if not st.session_state["index_built"]:
         try:
             with st.spinner("Loading data and building index..."):
@@ -128,15 +128,6 @@ def main():
         except Exception as e:
             st.error(f"Error initializing application: {e}")
 
-    # --- Hero Section ---
-    st.markdown("""
-    <div style='text-align: center; margin-bottom: 2.5rem;'>
-        <h1 style='margin-bottom: 0.5rem;'> SHL Assessment Chatbot</h1>
-        <p style='color: #8095a6; font-size: 1rem; margin-top: 0;'>
-            Get information and recommendations on SHL assessments.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
 
     # --- Chat Interface ---
     chat_engine = st.session_state.get('chat_engine')
@@ -160,7 +151,6 @@ def main():
 
     else:
         st.info("Chat is ready! Ask me anything about SHL assessments.")
-
 
 if __name__ == "__main__":
     main()
