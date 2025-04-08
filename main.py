@@ -21,16 +21,6 @@ CSV_FILE_PATH = "shl_assessments.csv"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 
-def load_groq_llm():
-    load_dotenv()
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        raise ValueError("GROQ_API_KEY not found in .env file or environment variables")
-    return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
-
-def load_embeddings():
-    return HuggingFaceEmbedding(model_name=EMBED_MODEL)
-
 def load_data_from_csv(csv_path):
     """Loads assessment data from a CSV file."""
     try:
@@ -46,6 +36,17 @@ def load_data_from_csv(csv_path):
         raise ValueError(f"Error reading CSV: {e}")
     except Exception as e:
         raise Exception(f"An unexpected error occurred while loading CSV data: {e}")
+    
+
+def load_groq_llm():
+    load_dotenv()
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in .env file or environment variables")
+    return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
+
+def load_embeddings():
+    return HuggingFaceEmbedding(model_name=EMBED_MODEL)    
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
@@ -83,7 +84,6 @@ def reset_index():
         st.error(f"Error resetting index: {str(e)}")
         return None
 
-# --- Streamlit UI ---
 def main():
     st.set_page_config(
         page_title="SHL Assessment Chatbot",
@@ -123,7 +123,6 @@ def main():
         st.session_state["index_built"] = False
 
 
-    # --- Load data and build index on app start ---
     if not st.session_state["index_built"]:
         try:
             with st.spinner("Loading data and building index..."):
@@ -136,16 +135,6 @@ def main():
                     st.error("Failed to load assessment data. Please check the CSV file.")
         except Exception as e:
             st.error(f"Error initializing application: {e}")
-
-    # --- Hero Section ---
-    st.markdown("""
-    <div style='text-align: center; margin-bottom: 2.5rem;'>
-        <h1 style='margin-bottom: 0.5rem;'>SHL Assessment Chatbot</h1>
-        <p style='color: #94a3b8; font-size: 1.1rem; margin-top: 0;'>
-            Get information and recommendations on SHL assessments.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
 
     # --- Chat Interface ---
     chat_engine = st.session_state.get('chat_engine')
