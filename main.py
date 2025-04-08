@@ -91,16 +91,21 @@ def main():
         initial_sidebar_state="collapsed"
     )
 
-   
     st.markdown("""
     <style>
     :root {
         --primary: #6eb5ff;
-        --background: #000000;
-        --card: #1a1d24;
-        --text: #f0f0f0;
+        --background: #ffffff;
+        --card: #f0f2f6;
+        --text: #1a1a1a;
     }
-    .stApp { background-color: var(--background) !important; color: var(--text) !important; }
+    .stApp {
+        background-color: var(--background) !important;
+        color: var(--text) !important;
+    }
+    .stMarkdown, .stTextInput, .stChatMessage, .stChatInputContainer, .css-10trblm, .css-1cpxqw2 {
+        color: var(--text) !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -109,11 +114,14 @@ def main():
     os.environ["TORCH_DISABLE_STREAMLIT_WATCHER"] = "1"
     os.environ["LLAMA_INDEX_DISABLE_OPENAI"] = "1"
 
-   
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "assistant", "content": "Hello! I'm your SHL assessment assistant. How can I help you?"}]
+        st.session_state.messages = [{
+            "role": "assistant",
+            "content": "🤖 Hello! I'm your SHL assessment assistant. How can I help you?"
+        }]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
+
 
     # --- Load data and build index on app start ---
     if not st.session_state["index_built"]:
@@ -143,26 +151,27 @@ def main():
     chat_engine = st.session_state.get('chat_engine')
     if chat_engine:
         for msg in st.session_state.messages:
+            icon = "🤖" if msg["role"] == "assistant" else "👤"
             with st.chat_message(msg["role"]):
-                st.write(msg["content"])
+                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
 
         if prompt := st.chat_input("Ask me about SHL assessments..."):
             st.session_state.messages.append({"role": "user", "content": prompt})
             with st.chat_message("user"):
-                st.write(prompt)
+                st.markdown(f"<span style='color: black;'>👤 {prompt}</span>", unsafe_allow_html=True)
 
             with st.chat_message("assistant"):
                 try:
-                   # Add formatting instructions to the prompt
-                   formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
-                   response = chat_engine.chat(formatted_prompt)
-                   st.write(response.response)
-                   st.session_state.messages.append({"role": "assistant", "content": response.response})
+                    # Add formatting instructions to the prompt
+                    formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
+                    response = chat_engine.chat(formatted_prompt)
+                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
+                    st.session_state.messages.append({"role": "assistant", "content": response.response})
                 except Exception as e:
-                   st.error(f"An error occurred during chat: {e}")
+                    st.error(f"An error occurred during chat: {e}")
 
     else:
-        st.info("Chat is ready! Ask me anything about SHL assessments.")
+        st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
 
 if __name__ == "__main__":
     main()
