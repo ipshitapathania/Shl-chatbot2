@@ -99,6 +99,16 @@ def main():
         --background: #ffffff;
         --card: #f0f2f6;
         --text: #1a1a1a;
+        --background: #ffffff;
+        --card: #f0f2f6;
+        --text: #1a1a1a;
+    }
+    .stApp {
+        background-color: var(--background) !important;
+        color: var(--text) !important;
+    }
+    .stMarkdown, .stTextInput, .stChatMessage, .stChatInputContainer, .css-10trblm, .css-1cpxqw2 {
+        color: var(--text) !important;
     }
     .stApp {
         background-color: var(--background) !important;
@@ -120,8 +130,13 @@ def main():
             "role": "assistant",
             "content": "🤖 Hello! I'm your SHL assessment assistant. How can I help you?"
         }]
+        st.session_state.messages = [{
+            "role": "assistant",
+            "content": "🤖 Hello! I'm your SHL assessment assistant. How can I help you?"
+        }]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
+
 
 
     if not st.session_state["index_built"]:
@@ -142,16 +157,23 @@ def main():
     if chat_engine:
         for msg in st.session_state.messages:
             icon = "🤖" if msg["role"] == "assistant" else "👤"
+            icon = "🤖" if msg["role"] == "assistant" else "👤"
             with st.chat_message(msg["role"]):
+                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
                 st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
 
         if prompt := st.chat_input("Ask me about SHL assessments..."):
             st.session_state.messages.append({"role": "user", "content": prompt})
             with st.chat_message("user"):
                 st.markdown(f"<span style='color: black;'>👤 {prompt}</span>", unsafe_allow_html=True)
+                st.markdown(f"<span style='color: black;'>👤 {prompt}</span>", unsafe_allow_html=True)
 
             with st.chat_message("assistant"):
                 try:
+                    # Add formatting instructions to the prompt
+                    formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
+                    response = chat_engine.chat(formatted_prompt)
+                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
                     # Add formatting instructions to the prompt
                     formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
                     response = chat_engine.chat(formatted_prompt)
@@ -162,6 +184,8 @@ def main():
 
     else:
         st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
+        st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
 
 if __name__ == "__main__":
     main()
+
