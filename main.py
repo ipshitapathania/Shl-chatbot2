@@ -21,16 +21,6 @@ CSV_FILE_PATH = "shl_assessments.csv"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 
-def load_groq_llm():
-    load_dotenv()
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        raise ValueError("GROQ_API_KEY not found in .env file or environment variables")
-    return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
-
-def load_embeddings():
-    return HuggingFaceEmbedding(model_name=EMBED_MODEL)
-
 def load_data_from_csv(csv_path):
     """Loads assessment data from a CSV file."""
     try:
@@ -46,6 +36,17 @@ def load_data_from_csv(csv_path):
         raise ValueError(f"Error reading CSV: {e}")
     except Exception as e:
         raise Exception(f"An unexpected error occurred while loading CSV data: {e}")
+    
+
+def load_groq_llm():
+    load_dotenv()
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("GROQ_API_KEY not found in .env file or environment variables")
+    return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
+
+def load_embeddings():
+    return HuggingFaceEmbedding(model_name=EMBED_MODEL)    
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
@@ -83,7 +84,6 @@ def reset_index():
         st.error(f"Error resetting index: {str(e)}")
         return None
 
-# --- Streamlit UI ---
 def main():
     st.set_page_config(
         page_title="SHL Assessment Chatbot",
@@ -91,16 +91,21 @@ def main():
         initial_sidebar_state="collapsed"
     )
 
-   
     st.markdown("""
     <style>
     :root {
         --primary: #6eb5ff;
-        --background: #000000;
-        --card: #1a1d24;
-        --text: #f0f0f0;
+        --background: #ffffff;
+        --card: #f0f2f6;
+        --text: #1a1a1a;
     }
-    .stApp { background-color: var(--background) !important; color: var(--text) !important; }
+    .stApp {
+        background-color: var(--background) !important;
+        color: var(--text) !important;
+    }
+    .stMarkdown, .stTextInput, .stChatMessage, .stChatInputContainer, .css-10trblm, .css-1cpxqw2 {
+        color: var(--text) !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -109,13 +114,15 @@ def main():
     os.environ["TORCH_DISABLE_STREAMLIT_WATCHER"] = "1"
     os.environ["LLAMA_INDEX_DISABLE_OPENAI"] = "1"
 
-   
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "assistant", "content": "Hello! I'm your SHL assessment assistant. How can I help you?"}]
+        st.session_state.messages = [{
+            "role": "assistant",
+            "content": "🤖 Hello! I'm your SHL assessment assistant. How can I help you?"
+        }]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
 
-    # --- Load data and build index on app start ---
+
     if not st.session_state["index_built"]:
         try:
             with st.spinner("Loading data and building index..."):
@@ -129,40 +136,31 @@ def main():
         except Exception as e:
             st.error(f"Error initializing application: {e}")
 
-    # --- Hero Section ---
-    st.markdown("""
-    <div style='text-align: center; margin-bottom: 2.5rem;'>
-        <h1 style='margin-bottom: 0.5rem;'>SHL Assessment Chatbot</h1>
-        <p style='color: #94a3b8; font-size: 1.1rem; margin-top: 0;'>
-            Get information and recommendations on SHL assessments.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
     # --- Chat Interface ---
     chat_engine = st.session_state.get('chat_engine')
     if chat_engine:
         for msg in st.session_state.messages:
+            icon = "🤖" if msg["role"] == "assistant" else "👤"
             with st.chat_message(msg["role"]):
-                st.write(msg["content"])
+                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
 
         if prompt := st.chat_input("Ask me about SHL assessments..."):
             st.session_state.messages.append({"role": "user", "content": prompt})
             with st.chat_message("user"):
-                st.write(prompt)
+                st.markdown(f"<span style='color: black;'>👤 {prompt}</span>", unsafe_allow_html=True)
 
             with st.chat_message("assistant"):
                 try:
-                   # Add formatting instructions to the prompt
-                   formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
-                   response = chat_engine.chat(formatted_prompt)
-                   st.write(response.response)
-                   st.session_state.messages.append({"role": "assistant", "content": response.response})
+                    # Add formatting instructions to the prompt
+                    formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
+                    response = chat_engine.chat(formatted_prompt)
+                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
+                    st.session_state.messages.append({"role": "assistant", "content": response.response})
                 except Exception as e:
-                   st.error(f"An error occurred during chat: {e}")
+                    st.error(f"An error occurred during chat: {e}")
 
     else:
-        st.info("Chat is ready! Ask me anything about SHL assessments.")
+        st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
 
 if __name__ == "__main__":
     main()
