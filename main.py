@@ -48,7 +48,7 @@ def load_groq_llm():
     return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
 
 def load_embeddings():
-    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")    
+    return HuggingFaceEmbedding(model_name="./all-MiniLM-L6-v2")    
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
