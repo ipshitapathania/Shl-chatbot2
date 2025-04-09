@@ -2,7 +2,6 @@ import os
 import shutil
 import streamlit as st
 from dotenv import load_dotenv
-# from llama_index.embeddings import SentenceTransformerEmbedding
 from llama_index.core import (
     VectorStoreIndex,
     Settings,
@@ -10,7 +9,6 @@ from llama_index.core import (
     load_index_from_storage,
 )
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-# from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.groq import Groq
 import pandas as pd
 from llama_index.core import Document
