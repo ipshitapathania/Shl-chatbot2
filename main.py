@@ -157,9 +157,7 @@ def main():
     if chat_engine:
         for msg in st.session_state.messages:
             icon = "🤖" if msg["role"] == "assistant" else "👤"
-            icon = "🤖" if msg["role"] == "assistant" else "👤"
             with st.chat_message(msg["role"]):
-                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
                 st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
 
         if prompt := st.chat_input("Ask me about SHL assessments..."):
@@ -174,16 +172,11 @@ def main():
                     formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
                     response = chat_engine.chat(formatted_prompt)
                     st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
-                    # Add formatting instructions to the prompt
-                    formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
-                    response = chat_engine.chat(formatted_prompt)
-                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
                     st.session_state.messages.append({"role": "assistant", "content": response.response})
                 except Exception as e:
                     st.error(f"An error occurred during chat: {e}")
 
     else:
-        st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
         st.info("💬 Chat is ready! Ask me anything about SHL assessments.")
 
 if __name__ == "__main__":
