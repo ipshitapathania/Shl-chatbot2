@@ -9,7 +9,6 @@ from llama_index.core import (
     load_index_from_storage,
 )
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-# from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.groq import Groq
 import pandas as pd
 from llama_index.core import Document
@@ -17,9 +16,10 @@ from llama_index.core import Document
 
 PERSIST_DIR = "./storage"
 EMBED_MODEL = "./all-MiniLM-L6-v2"
+EMBED_MODEL = "./all-MiniLM-L6-v2"
 LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]  or os.getenv("GROQ_API_KEY")
 
 
 def load_data_from_csv(csv_path):
@@ -47,8 +47,9 @@ def load_groq_llm():
     
     return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
 
+
 def load_embeddings():
-    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")    
+    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")   
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
@@ -155,7 +156,8 @@ def main():
         for msg in st.session_state.messages:
             icon = "🤖" if msg["role"] == "assistant" else "👤"
             with st.chat_message(msg["role"]):
-                st.markdown(f"<span style='color: white;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
+                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
+                st.markdown(f"<span style='color: black;'>{icon} {msg['content']}</span>", unsafe_allow_html=True)
 
         if prompt := st.chat_input("Ask me about SHL assessments..."):
             st.session_state.messages.append({"role": "user", "content": prompt})
@@ -168,7 +170,11 @@ def main():
                     # Add formatting instructions to the prompt
                     formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
                     response = chat_engine.chat(formatted_prompt)
-                    st.markdown(f"<span style='color: white;'>🤖 {response.response}</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
+                    # Add formatting instructions to the prompt
+                    formatted_prompt = f"{prompt}. Please provide a list of all matching SHL assessments (minimum 1, maximum 10). For each assessment, include the following details: Assessment Name: [Name], URL: [URL], Remote Testing Support: [Yes/No], Adaptive/IRT Support: [Yes/No], Duration: [Duration], Test Type: [Type]. If there are no matching assessments, please state that."
+                    response = chat_engine.chat(formatted_prompt)
+                    st.markdown(f"<span style='color: black;'>🤖 {response.response}</span>", unsafe_allow_html=True)
                     st.session_state.messages.append({"role": "assistant", "content": response.response})
                 except Exception as e:
                     st.error(f"An error occurred during chat: {e}")
