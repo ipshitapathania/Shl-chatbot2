@@ -2,7 +2,7 @@ import os
 import shutil
 import streamlit as st
 from dotenv import load_dotenv
-from llama_index.embeddings import SentenceTransformerEmbedding
+# from llama_index.embeddings import SentenceTransformerEmbedding
 from llama_index.core import (
     VectorStoreIndex,
     Settings,
