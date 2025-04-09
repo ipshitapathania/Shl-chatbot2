@@ -8,7 +8,8 @@ from llama_index.core import (
     StorageContext,
     load_index_from_storage,
 )
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+# from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.groq import Groq
 import pandas as pd
 from llama_index.core import Document
@@ -51,7 +52,7 @@ def load_embeddings():
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
-    Settings.embed_model = load_embeddings()
+    Settings.embed_model = OpenAIEmbedding()
     Settings.llm = load_groq_llm()
 
     documents = [Document(text=f"Name: {item['Assessment Name']}, URL: {item['URL']}, Remote Testing: {item['Remote Testing Support']}, Adaptive/IRT: {item['Adaptive/IRT Support']}, Duration: {item['Duration (min)']}, Type: {item['Test Type']}") for item in data]
