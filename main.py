@@ -96,10 +96,10 @@ def main():
     <style>
     :root {
         --primary: #6eb5ff;
-        --background: #ffffff;
+        --background: #000000;
         --card: #f0f2f6;
-        --text: #000000;
-        --background: #ffffff;
+        --text: #1a1a1a;
+        --background: #000000;
         --card: #f0f2f6;
         --text: #1a1a1a;
     }
