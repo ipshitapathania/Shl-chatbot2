@@ -98,7 +98,7 @@ def main():
         --primary: #6eb5ff;
         --background: #ffffff;
         --card: #f0f2f6;
-        --text: #1a1a1a;
+        --text: #000000;
         --background: #ffffff;
         --card: #f0f2f6;
         --text: #1a1a1a;
