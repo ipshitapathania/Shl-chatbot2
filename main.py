@@ -2,6 +2,7 @@ import os
 import shutil
 import streamlit as st
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
 from llama_index.core import (
     VectorStoreIndex,
     Settings,
@@ -15,8 +16,6 @@ from llama_index.core import Document
 
 
 PERSIST_DIR = "./storage"
-EMBED_MODEL = "./all-MiniLM-L6-v2"
-EMBED_MODEL = "./all-MiniLM-L6-v2"
 EMBED_MODEL = "./all-MiniLM-L6-v2"
 LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
@@ -43,7 +42,6 @@ def load_data_from_csv(csv_path):
 def load_groq_llm():
     try:
         api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
-        api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     except KeyError:
         raise ValueError("GROQ_API_KEY not found in Streamlit secrets.")
     
@@ -53,11 +51,9 @@ def load_groq_llm():
 
 def load_embeddings():
     return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")   
-    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")   
-
+    
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
-    return HuggingFaceEmbedding(model_name=EMBED_MODEL) 
     return HuggingFaceEmbedding(model_name=EMBED_MODEL) 
     Settings.llm = load_groq_llm()
 
