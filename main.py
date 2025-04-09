@@ -18,7 +18,7 @@ PERSIST_DIR = "./storage"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
-GROQ_API_KEY = st.secrets("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"] 
 
 
 def load_data_from_csv(csv_path):
@@ -40,14 +40,14 @@ def load_data_from_csv(csv_path):
 
 def load_groq_llm():
     try:
-        api_key = st.secrets["GROQ_API_KEY"]
+        api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     except KeyError:
         raise ValueError("GROQ_API_KEY not found in Streamlit secrets.")
     
     return Groq(model=LLM_MODEL, api_key=api_key, temperature=0.1)
 
 def load_embeddings():
-    return HuggingFaceEmbedding(model_name=EMBED_MODEL)    
+    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")    
 
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
