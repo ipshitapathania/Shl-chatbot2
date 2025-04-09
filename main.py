@@ -15,7 +15,7 @@ from llama_index.core import Document
 
 
 PERSIST_DIR = "./storage"
-EMBED_MODEL = "./all-MiniLM-L6-v2"
+EMBED_MODEL = "sentence-transformers/paraphrase-MiniLM-L6-v2"
 LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"] 
