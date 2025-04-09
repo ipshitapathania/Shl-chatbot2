@@ -2,7 +2,6 @@ import os
 import shutil
 import streamlit as st
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
 from llama_index.core import (
     VectorStoreIndex,
     Settings,
@@ -19,7 +18,7 @@ PERSIST_DIR = "./storage"
 EMBED_MODEL = "./all-MiniLM-L6-v2"
 LLM_MODEL = "llama3-8b-8192" 
 CSV_FILE_PATH = "shl_assessments.csv"
-GROQ_API_KEY = st.secrets["GROQ_API_KEY"]  or os.getenv["GROQ_API_KEY"]  or os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]  or  os.getenv("GROQ_API_KEY")
 
 
 def load_data_from_csv(csv_path):
@@ -50,8 +49,8 @@ def load_groq_llm():
 
 
 def load_embeddings():
-    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")   
-    
+    return HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")    
+
 def build_index(data):
     """Builds the vector index from the provided assessment data."""
     return HuggingFaceEmbedding(model_name=EMBED_MODEL) 
@@ -140,15 +139,8 @@ def main():
             "role": "assistant",
             "content": "Hello! I'm your SHL assessment assistant. How can I help you?"
         }]
-        st.session_state.messages = [{
-            "role": "assistant",
-            "content": "Hello! I'm your SHL assessment assistant. How can I help you?"
-        }]
     if "index_built" not in st.session_state:
         st.session_state["index_built"] = False
-
-
-
 
     if not st.session_state["index_built"]:
         try:
